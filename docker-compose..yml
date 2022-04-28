@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  argentbanck-stack:
+    container_name: ${CONTAINER_BACKEND_NAME}
+    image: ${IMAGE_BACKEND_NAME}
+    expose:
+    - ${API_PORT}
+    ports:
+    - ${API_PORT}:${API_PORT}
+    environment:
+    - NODE_ENV=${NODE_ENV}
+    - PORT=${API_PORT}
+    - DATABASE_URL=${DATABASE_URL}
