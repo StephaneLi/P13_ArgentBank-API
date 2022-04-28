@@ -7,8 +7,30 @@ body {
   min-height: 100vh;
 }
 
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 i {
   margin:0 5px
+}
+
+h3 {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 .react-app {

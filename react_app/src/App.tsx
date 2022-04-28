@@ -4,7 +4,7 @@ import { BrowserRouter  as Router, Route, Routes } from 'react-router-dom'
 import Header from './layout/Header'
 import Footer from './layout/Footer'
 
-import Sample from './components/Sample';
+import Home from './pages/Home';
 
 const App: React.FunctionComponent = () => {
   return (
@@ -13,7 +13,7 @@ const App: React.FunctionComponent = () => {
         <Header />
           <main>
             <Routes>
-              <Route path="/" element={<Sample />} ></Route> 
+              <Route path="/" element={<Home />} ></Route> 
             </Routes>
           </main>
       </Router>

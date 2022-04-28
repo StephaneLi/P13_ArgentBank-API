@@ -1,7 +1,10 @@
 @import './colors';
 
 :export {
+  secondaryDark: $secondary-dark;
   secondary: $secondary;
+  primaryLight: $primary-lignt;
   primary: $primary;
   bgDark: $bg-dark;
 }
+
