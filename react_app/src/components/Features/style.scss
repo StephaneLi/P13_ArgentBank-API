@@ -1,0 +1,33 @@
+@import '../../sass/abstract/variables';
+@import '../../sass/themes/colors';
+
+.features {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  &__item {
+    flex: 1;
+    padding: 2.5rem;
+
+    &__icon {
+      width: 150px;
+      border: 10px solid $primary-lignt;
+      border-radius: 50%;
+      padding: 1rem;
+    }
+
+    &__title {
+      color: $secondary-dark;
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media (min-width: $mediaquery-screen-md) {
+  .features {
+    flex-direction: row;
+  }
+}
