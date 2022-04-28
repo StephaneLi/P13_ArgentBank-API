@@ -1,7 +1,7 @@
 import React from 'react';
-import './Component.sample.scss';
+import './style.scss';
 
-const Component: React.FunctionComponent = () => {
+const Sample: React.FunctionComponent = () => {
   return (
     <div className="component">
       <div className='component__container'>
@@ -11,4 +11,4 @@ const Component: React.FunctionComponent = () => {
   );
 }
 
-export default Component;
+export default Sample;
