@@ -37,6 +37,13 @@ const userSlice:Slice = createSlice({
   name: 'user',
   initialState: userInitialState,
   reducers: {
+    logout: (state: IUserInitialState) => {
+      state.user = {}
+      state.isAuthenticated = false
+      state.token = undefined
+      state.loading = false      
+      state.errorMessage = undefined      
+    },
     setToken: (state: IUserInitialState, action: PayloadAction<string>) => {
       state.token = action.payload;
     },
@@ -99,13 +106,14 @@ const getUserInfos = createAsyncThunk(
   }
 );
 
-const { setToken, deleteToken, isAuthenticated } = userSlice.actions
+const { setToken, deleteToken, isAuthenticated, logout } = userSlice.actions
 
 export const UserActions = {
   setToken,
   deleteToken,
   isAuthenticated,
   login,
+  logout,
   getUserInfos
 }
 
