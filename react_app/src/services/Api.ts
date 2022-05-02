@@ -3,12 +3,9 @@ import axios from "axios";
 interface ApiResponseData {
   status?: number,
   message?: string,
-  body?: ApiBodyData  
+  body?: TokenPayload | UserPayload  
 }
 
-interface ApiBodyData {
-  token?:string
-}
 
 export interface SigniInPayload {
   email: string
@@ -18,6 +15,10 @@ export interface SigniInPayload {
 export interface UserPayload {
   id: string
   email: string
+}
+
+export interface TokenPayload {
+  token: string
 }
 
 
@@ -31,7 +32,7 @@ const postSignIn = async (request: SigniInPayload): Promise<ApiResponseData> => 
     })
 };
 
-const getUserInfos = async (token: string): Promise<UserPayload> => {
+const getUserInfos = async (token: string): Promise<ApiResponseData> => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
   return axios.post(`${process.env.REACT_APP_API_HOST}/user/profile`)
   .then(res => {   

@@ -1,13 +1,46 @@
 @import '../../sass/themes/colors';
 
-.footer {
-  display: flex;
-  justify-content: center;
-  border-top: 2px solid #ccc;
-  padding: 2rem 0 1.5rem;
+.header {
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+  }
 
-  &__text {
-    margin: 0;
-    padding: 0;
+  a {
+    font-weight: bold;
+    color: $secondary;
+
+    &.router-link-exact-active {
+      color: $primary;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    &__img {
+      max-width: 100%;
+      width: 200px;
+    }
+  }
+
+  &__item {
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap:20px;
+    
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
+

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice, createAsyncThunk } from '@reduxjs/toolkit'
-import Api, { SigniInPayload } from '../services/Api';
+import Api, { SigniInPayload, TokenPayload, UserPayload } from '../services/Api';
 
 interface IErrorSigninMessages {
   [key: string]: string | undefined
@@ -52,9 +52,11 @@ const userSlice:Slice = createSlice({
     builder.addCase( login.pending, (state) => {
       state.loading = true;
     })
-    builder.addCase( login.fulfilled, (state, action) => {      
+    builder.addCase( login.fulfilled, (state, action) => {
+      const payload =  action.payload.body as TokenPayload
+
       state.loading = false;
-      state.token = action.payload.body!.token
+      state.token = payload.token
       state.errorMessage = undefined
     })
     builder.addCase( login.rejected, (state, action) => {
@@ -67,8 +69,9 @@ const userSlice:Slice = createSlice({
       state.loading = true;
     })
     builder.addCase( getUserInfos.fulfilled, (state, action) => {
+      const payload = action.payload.body as UserPayload
       state.loading = false;
-      state.user = action.payload
+      state.user = payload
       state.isAuthenticated = true
       state.errorMessage = undefined
     })
