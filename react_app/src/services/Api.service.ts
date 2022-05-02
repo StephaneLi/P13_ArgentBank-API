@@ -1,26 +1,5 @@
 import axios from "axios";
-
-interface ApiResponseData {
-  status?: number,
-  message?: string,
-  body?: TokenPayload | UserPayload  
-}
-
-
-export interface SigniInPayload {
-  email: string
-  password: string
-}
-
-export interface UserPayload {
-  id: string
-  email: string
-}
-
-export interface TokenPayload {
-  token: string
-}
-
+import { SigniInPayload, ApiResponseData } from "../interfaces/Api.service.intf";
 
 const postSignIn = async (request: SigniInPayload): Promise<ApiResponseData> => {
   return axios.post(`${process.env.REACT_APP_API_HOST}/user/login`, request)
@@ -42,7 +21,6 @@ const getUserInfos = async (token: string): Promise<ApiResponseData> => {
     throw err
   })
 }
-
 
 const Api = {
   postSignIn,

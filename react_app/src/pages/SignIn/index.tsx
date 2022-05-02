@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faUserCircle } from '@fortawesome/free-solid-svg-icons'
-
-import colors from './../../sass/themes/_colors.module.scss';
-
-import './style.scss'
-
-
 import store, { State } from '../../store/stores';
 import { UserActions } from '../../store/user.store';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
-import RoutesApp from '../../routes/RoutesApp';
+import RoutesApp from '../../routes/RoutesApp.route';
+
+import colors from './../../sass/themes/_colors.module.scss';
+import './style.scss'
+import Button, { ButtonStyle } from '../../components/Button';
 
 
 const SignIn: React.FunctionComponent = () => {
@@ -26,12 +23,11 @@ const SignIn: React.FunctionComponent = () => {
   const [formInputRemember, setFormInputRemember] = useState<boolean>(false) 
 
   /**
-   * Submit Form Login function
+   * Init error message onmount Component
    */
-  const submitLogin = async (e: React.MouseEvent) => {
-    e.preventDefault()
-    store.dispatch(UserActions.login({email: formInputEmail, password: formInputPassword}))
-  }
+  useEffect(() => {
+    store.dispatch(UserActions.initErrorMessage({}))
+  }, [])
 
   /**
    * Save token in local storage if Remember checkbox
@@ -49,6 +45,15 @@ const SignIn: React.FunctionComponent = () => {
     }
   }, [formInputRemember, isAuthenticated, token])
 
+  /**
+   * Submit Form Login function
+   */
+    const submitLogin = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    store.dispatch(UserActions.login({email: formInputEmail, password: formInputPassword}))
+  }
+
+    
   // if user is defined on store redirect to profile page
   if (isAuthenticated) 
   return (
@@ -62,7 +67,7 @@ const SignIn: React.FunctionComponent = () => {
           <div className="badge-alert">
             <FontAwesomeIcon icon={faCircleExclamation} />
             <p>{ `${errorMessage}` } </p>
-          </div>          
+          </div>
         ) : null}
         <i className='signin__icon'>
           <FontAwesomeIcon color={colors.secondary} icon={faUserCircle} />
@@ -81,7 +86,7 @@ const SignIn: React.FunctionComponent = () => {
             <input type="checkbox" onChange={() => setFormInputRemember(!formInputRemember)} id="remember-me" checked={formInputRemember} />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button onClick={(e) => submitLogin(e)} className={`signin__button ${loading ? 'signin__button--loading' : ''}`}>Sign In</button>
+          <Button onClick={submitLogin} style={ButtonStyle.CTA} label='Sign In' isLoading={loading} />
         </form>
       </section>
     </div>
