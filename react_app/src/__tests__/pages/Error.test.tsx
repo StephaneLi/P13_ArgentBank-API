@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import Error from '.'
+import Error from '../../pages/Error'
 
 import '../../config/config.jest'
 

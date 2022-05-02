@@ -1,10 +1,9 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import SignIn from '.'
-
+import { Provider } from 'react-redux'
+import store from '../../store/stores'
+import SignIn from '../../pages/SignIn'
 import '../../config/config.jest'
-import { Provider } from 'react-redux';
-import store from '../../store/stores';
 
 test('renders component simple', () => {
   render(

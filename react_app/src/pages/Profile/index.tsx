@@ -13,10 +13,25 @@ const Profile: React.FunctionComponent = () => {
   return (
     <div className="container bg-dark profile">
       <div className="profile__header">
-        <h1>Welcome back<br />{ user?.firstName } { user?.lastName }!</h1>
+        <h1>Welcome back <br />{ user?.firstName } { user?.lastName }!</h1>
         <div className='profile__header__button'>
           <Button label="Edit Name"/>
         </div>        
+      </div>
+      <div className="profile__header">
+        <form>
+          <div className="input-wrapper">
+            <label htmlFor="username">Lastname</label>
+            <input onChange={(e) =>  {}} type="text" id="username" value={''} />
+          </div>
+          <div className="input-wrapper">
+            <label htmlFor="password">Firstname</label>
+            <input onChange={(e) =>  {}} type="password" id="password" value={''} />
+          </div>
+          <div className='profile__header__button'>
+            <Button label="Save Profile"/>
+          </div>  
+        </form>
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

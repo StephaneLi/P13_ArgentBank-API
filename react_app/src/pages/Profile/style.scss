@@ -2,6 +2,10 @@
 
 .profile {
   &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     margin-bottom: 2rem;
 
@@ -9,7 +13,11 @@
       font-size: 2rem;
       line-height: normal;
       margin-bottom: 0;
-    }    
+    }
+
+    form {
+      max-width: 200px;
+    }
 
     &__button {
       display: inline-block
