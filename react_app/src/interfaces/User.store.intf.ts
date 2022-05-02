@@ -4,8 +4,8 @@ export interface IErrorSigninMessages {
 
 export interface IUserInfos {
   email?: string,
-  firstname?: string,
-  lastname?: string,
+  firstName?: string,
+  lastName?: string,
   createdAt?: Date,
   updatedAt?: Date,
   id?: string

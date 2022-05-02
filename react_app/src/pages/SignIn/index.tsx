@@ -9,6 +9,7 @@ import RoutesApp from '../../routes/RoutesApp.route';
 
 import colors from './../../sass/themes/_colors.module.scss';
 import './style.scss'
+import Button, { ButtonStyle } from '../../components/Button';
 
 
 const SignIn: React.FunctionComponent = () => {
@@ -66,7 +67,7 @@ const SignIn: React.FunctionComponent = () => {
           <div className="badge-alert">
             <FontAwesomeIcon icon={faCircleExclamation} />
             <p>{ `${errorMessage}` } </p>
-          </div>          
+          </div>
         ) : null}
         <i className='signin__icon'>
           <FontAwesomeIcon color={colors.secondary} icon={faUserCircle} />
@@ -85,7 +86,7 @@ const SignIn: React.FunctionComponent = () => {
             <input type="checkbox" onChange={() => setFormInputRemember(!formInputRemember)} id="remember-me" checked={formInputRemember} />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button onClick={(e) => submitLogin(e)} className={`signin__button ${loading ? 'signin__button--loading' : ''}`}>Sign In</button>
+          <Button onClick={submitLogin} style={ButtonStyle.CTA} label='Sign In' isLoading={loading} />
         </form>
       </section>
     </div>
