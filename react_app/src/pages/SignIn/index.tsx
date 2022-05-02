@@ -44,7 +44,7 @@ const SignIn: React.FunctionComponent = () => {
         token: token,
         ttl: now.getTime() + ttl,
       }
-
+      localStorage.removeItem('token')
       localStorage.setItem('token', JSON.stringify(value))
     }
   }, [formInputRemember, isAuthenticated, token])

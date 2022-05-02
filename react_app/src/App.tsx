@@ -25,13 +25,14 @@ const App: React.FunctionComponent = () => {
     
     if(localStorage.getItem('token')) {
       const dataToken = JSON.parse(localStorage.getItem('token')!)
+      console.log(Date.now() > dataToken.ttl)
       // Check exiration validity
       if(Date.now() > dataToken.ttl) {
         store.dispatch(UserActions.deleteToken(dataToken.token))
+        localStorage.removeItem('token')
       } else {
         store.dispatch(UserActions.setToken(dataToken.token))
-      } 
-      
+      }     
     }
   }, [])
 
