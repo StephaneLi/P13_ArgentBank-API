@@ -5,8 +5,8 @@ import Sample from '.'
 import '../../config/config.jest'
 
 test('renders component simple', () => {
-  render(<Sample />);
-  const Element = screen.getByText('Test');
+  render(<Sample />)
+  const Element = screen.getByText('Test Component Sample');
   console.log('element :' + Element.innerHTML )
   expect(Element).toBeInTheDocument();
 });

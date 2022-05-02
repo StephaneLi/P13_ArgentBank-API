@@ -1,0 +1,81 @@
+@import '../../sass/themes/colors';
+
+.signin {
+  &__content {
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+  }
+
+  &__button {
+    position:relative;
+    appearance: none;
+    border: none;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: $primary-light;
+    background-color: $primary-light;
+    color: white;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+
+    &::before {
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      height: 100%;
+      width: 100%;
+      background-color: white;
+      opacity: 0;
+      transition: opacity .15s ease-in-out
+    }
+
+    &:hover::before {
+      opacity: 0.5;
+    }
+
+    &--loading {
+      color: transparent;
+      background-color: derken($primary-light, 50%);
+
+      &::before {
+        display:none;
+      }      
+
+      &::after {
+        content: '';
+        position: absolute;
+        top:50%;
+        left:50%;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;        
+        border: 3px solid white;
+        border-bottom-color: transparent;
+        transform: translate(-50%, -50%);
+        animation: rotate-loader 1s linear infinite;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 5rem;
+  }
+}
+
+@keyframes rotate-loader {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

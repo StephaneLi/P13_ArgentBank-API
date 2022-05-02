@@ -1,0 +1,11 @@
+@import '../../sass/themes/colors';
+
+.error {
+  h1 {
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    color: $primary;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+}
