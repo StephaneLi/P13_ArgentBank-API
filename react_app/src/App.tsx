@@ -1,23 +1,69 @@
-import React from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import RoutesApp from './routes/RoutesApp';
 
-import { BrowserRouter  as Router, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import { useLocation, Navigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { State } from './store/stores';
+import { UserActions } from './store/user.store';
+import store from './store/stores';
+
 import Header from './layout/Header'
 import Footer from './layout/Footer'
 
-import Home from './pages/Home';
+
 
 const App: React.FunctionComponent = () => {
+  const userState = useSelector((state: State) => state.user)
+  const token = useSelector((state: State) => state.user.token)
+
+  const location = useLocation()
+  const [locationError, setLocationError] = useState<boolean>(false)  
+
+  // Check token localStorage
+  useEffect(() => {
+    
+    if(localStorage.getItem('token')) {
+      const dataToken = JSON.parse(localStorage.getItem('token')!)
+      // Check exiration validity
+      if(Date.now() > dataToken.ttl) {
+        store.dispatch(UserActions.deleteToken(dataToken.token))
+      } else {
+        store.dispatch(UserActions.setToken(dataToken.token))
+      } 
+      
+    }
+  }, [])
+
+  // AutoLogin if token logion success or token in localStorage
+  useEffect(() => {
+    if(token) store.dispatch(UserActions.getUserInfos(token))    
+  }, [token])
+
+  // Detect Error 404 page not found
+  useEffect(() => {
+    setLocationError( RoutesApp.getRouteByPathName(location.pathname) ? false : true)
+  }, [location, locationError])
+
   return (
     <div className="react-app">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} ></Route> 
-            </Routes>
-          </main>
-      </Router>
-      <Footer />
+      <Header />
+        <main>
+          <Routes>
+            { RoutesApp.routeList.map(({ path, Component, authRequired }) => (
+              <Route key={path} path={path} element={
+                <Fragment>
+                  {authRequired && !userState.isAuthenticated ? (
+                    <Navigate to={RoutesApp.getRouteByName('home')!.path} replace={true} />
+                  ) : (
+                    <Component />
+                  )}                  
+                </Fragment>
+              } /> 
+            ))}
+          </Routes>
+        </main>
+        <Footer />  
     </div>
   );
 }
