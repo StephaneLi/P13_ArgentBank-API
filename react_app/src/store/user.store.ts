@@ -1,28 +1,9 @@
-import { createSlice, PayloadAction, Slice, createAsyncThunk } from '@reduxjs/toolkit'
-import Api, { SigniInPayload, TokenPayload, UserPayload } from '../services/Api';
+import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
+import { TokenPayload, UserPayload } from '../interfaces/Api.service.intf'
+import { login, getUserInfos } from './user.actions'
+import { IErrorSigninMessages, IUserInitialState } from './../interfaces/User.store.intf'
 
-interface IErrorSigninMessages {
-  [key: string]: string | undefined
-}
-
-interface IUserInfos {
-  email?: string,
-  firstname?: string,
-  lastname?: string,
-  createdAt?: Date,
-  updatedAt?: Date,
-  id?: string
-}
-
-interface IUserInitialState {
-  user?: IUserInfos,
-  isAuthenticated: boolean,
-  token?: string,
-  loading?: boolean,
-  errorMessage?: string
-}
-
-export const ErrorSigninMessages: IErrorSigninMessages = {
+const ErrorSigninMessages: IErrorSigninMessages = {
   ERR_BAD_REQUEST: "You don't have a user account",
   ERR_NETWORK: "An error occurred on the server, please contact the administrator"
 }
@@ -50,9 +31,9 @@ const userSlice:Slice = createSlice({
     deleteToken: (state: IUserInitialState) =>  {
       state.token = undefined;
     },
-    isAuthenticated: (state: IUserInitialState) => {
-      state.isAuthenticated = !state.isAuthenticated
-    }
+    initErrorMessage: (state: IUserInitialState) => {
+      state.errorMessage = undefined
+    },
   },
   extraReducers: (builder) => {
     // Login authentication
@@ -89,29 +70,12 @@ const userSlice:Slice = createSlice({
   },
 });
 
-// ACTIONS
-const login = createAsyncThunk(
-  "auth/login",
-  async (payload: SigniInPayload) => {
-    const response = await Api.postSignIn({email: payload.email, password: payload.password})
-    return response;
-  }
-);
-
-const getUserInfos = createAsyncThunk(
-  "auth/getUser",
-  async (token: string) => {
-    const response = await Api.getUserInfos(token)
-    return response;
-  }
-);
-
-const { setToken, deleteToken, isAuthenticated, logout } = userSlice.actions
+const { setToken, deleteToken, initErrorMessage, logout } = userSlice.actions
 
 export const UserActions = {
   setToken,
   deleteToken,
-  isAuthenticated,
+  initErrorMessage,
   login,
   logout,
   getUserInfos

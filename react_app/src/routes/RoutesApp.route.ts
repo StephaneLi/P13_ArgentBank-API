@@ -1,5 +1,5 @@
 import Home from "../pages/Home"
-import { RouteAppObject } from "../interfaces/RouteAppObject.intf"
+import { RouteAppObject } from "../interfaces/RouteApp.route.intf"
 import Error from "../pages/Error"
 import SignIn from "../pages/SignIn"
 import Profile from "../pages/Profile"

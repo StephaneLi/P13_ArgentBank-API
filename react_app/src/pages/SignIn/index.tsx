@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faUserCircle } from '@fortawesome/free-solid-svg-icons'
-
-import colors from './../../sass/themes/_colors.module.scss';
-
-import './style.scss'
-
-
 import store, { State } from '../../store/stores';
 import { UserActions } from '../../store/user.store';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
-import RoutesApp from '../../routes/RoutesApp';
+import RoutesApp from '../../routes/RoutesApp.route';
+
+import colors from './../../sass/themes/_colors.module.scss';
+import './style.scss'
 
 
 const SignIn: React.FunctionComponent = () => {
@@ -26,12 +22,11 @@ const SignIn: React.FunctionComponent = () => {
   const [formInputRemember, setFormInputRemember] = useState<boolean>(false) 
 
   /**
-   * Submit Form Login function
+   * Init error message onmount Component
    */
-  const submitLogin = async (e: React.MouseEvent) => {
-    e.preventDefault()
-    store.dispatch(UserActions.login({email: formInputEmail, password: formInputPassword}))
-  }
+  useEffect(() => {
+    store.dispatch(UserActions.initErrorMessage({}))
+  }, [])
 
   /**
    * Save token in local storage if Remember checkbox
@@ -49,6 +44,15 @@ const SignIn: React.FunctionComponent = () => {
     }
   }, [formInputRemember, isAuthenticated, token])
 
+  /**
+   * Submit Form Login function
+   */
+    const submitLogin = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    store.dispatch(UserActions.login({email: formInputEmail, password: formInputPassword}))
+  }
+
+    
   // if user is defined on store redirect to profile page
   if (isAuthenticated) 
   return (
