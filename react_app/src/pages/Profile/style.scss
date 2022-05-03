@@ -15,8 +15,19 @@
       margin-bottom: 0;
     }
 
-    form {
-      max-width: 200px;
+    &__edit {
+      margin-top:10px;
+
+      &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .input-wrapper {
+          max-width: 150px;
+        }
+      }
     }
 
     &__button {

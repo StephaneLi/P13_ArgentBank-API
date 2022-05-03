@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
-import { TokenPayload, UserPayload } from '../interfaces/Api.service.intf'
-import { login, getUserInfos } from './user.actions'
+import { TokenPayload, UserPayload, UpdateProfilePayload } from '../interfaces/Api.service.intf'
+import { login, getUserInfos, updateUserInfos } from './user.actions'
 import { IErrorSigninMessages, IUserInitialState } from './../interfaces/User.store.intf'
 
 const ErrorSigninMessages: IErrorSigninMessages = {
@@ -67,6 +67,22 @@ const userSlice:Slice = createSlice({
       state.loading = false;
       state.errorMessage = action.error.code ? ErrorSigninMessages[action.error.code] : undefined
     })
+
+    // PutUserInfos
+    builder.addCase( updateUserInfos.pending, (state) => {
+      state.loading = true;
+    })
+    builder.addCase( updateUserInfos.fulfilled, (state, action) => {
+      const payload = action.payload.body as UpdateProfilePayload
+      state.loading = false;
+      state.user!.firstName = payload.firstName
+      state.user!.lastName = payload.lastName
+      state.errorMessage = undefined
+    })
+    builder.addCase( updateUserInfos.rejected, (state, action) => {
+      state.loading = false;
+      state.errorMessage = action.error.code ? ErrorSigninMessages[action.error.code] : undefined
+    })
   },
 });
 
@@ -78,7 +94,8 @@ export const UserActions = {
   initErrorMessage,
   login,
   logout,
-  getUserInfos
+  getUserInfos,
+  updateUserInfos
 }
 
 export default userSlice
