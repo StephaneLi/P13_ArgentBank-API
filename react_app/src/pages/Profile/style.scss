@@ -2,6 +2,10 @@
 
 .profile {
   &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     margin-bottom: 2rem;
 
@@ -9,7 +13,22 @@
       font-size: 2rem;
       line-height: normal;
       margin-bottom: 0;
-    }    
+    }
+
+    &__edit {
+      margin-top:10px;
+
+      &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .input-wrapper {
+          max-width: 150px;
+        }
+      }
+    }
 
     &__button {
       display: inline-block
