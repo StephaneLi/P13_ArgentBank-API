@@ -3,7 +3,8 @@ import './style.scss';
 
 export enum ButtonStyle {
   CTA,
-  NORMAL
+  NORMAL,
+  CANCEL
 }
 
 type ButtonProps = {
@@ -24,6 +25,8 @@ const Button: FunctionComponent<ButtonProps> = ({label='label', onClick = null, 
     switch (style) {
       case ButtonStyle.CTA: 
         return 'button--cta'
+      case ButtonStyle.CANCEL: 
+        return 'button--cancel'
       default:
         return ''
     }

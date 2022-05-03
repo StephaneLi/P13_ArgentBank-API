@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import store, { State } from '../../store/stores';
@@ -21,11 +21,13 @@ const SignIn: React.FunctionComponent = () => {
   const [formInputEmail, setFormInputEmail] = useState<string>('') 
   const [formInputPassword, setFormInputPassword] = useState<string>('') 
   const [formInputRemember, setFormInputRemember] = useState<boolean>(false) 
+  const [componentMount, setComponentMount] = useState<boolean>(false)
 
   /**
    * Init error message onmount Component
    */
   useEffect(() => {
+    setComponentMount(true)
     store.dispatch(UserActions.initErrorMessage({}))
   }, [])
 
@@ -61,14 +63,16 @@ const SignIn: React.FunctionComponent = () => {
   )
   
   return (
-    <div className="container bg-dark signin">
-      <section className="signin__content">
+    <div className={`container bg-dark signin ${!componentMount ? 'reveal' : ''}`}>
+      <section className="signin__content reveal-4">
+        <div className={`badge-alert ${errorMessage ? 'badge-alert--show' : ''}`}>
         {errorMessage ? ( 
-          <div className="badge-alert">
+          <Fragment>         
             <FontAwesomeIcon icon={faCircleExclamation} />
             <p>{ `${errorMessage}` } </p>
-          </div>
+          </Fragment>           
         ) : null}
+        </div>
         <i className='signin__icon'>
           <FontAwesomeIcon color={colors.secondary} icon={faUserCircle} />
         </i>  

@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./user.store";
+import accountSlice from "./accounts.store";
 import { useDispatch } from "react-redux";
 
 const store = configureStore({
   reducer: {
-    user: userSlice.reducer
+    user: userSlice.reducer,
+    account: accountSlice.reducer
   },
 })
 

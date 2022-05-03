@@ -1,47 +1,102 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useCallback, useEffect, Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import Button, { ButtonStyle } from '../../components/Button';
 import { IUserInfos } from '../../interfaces/User.store.intf'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { State } from '../../store/stores';
 import store from '../../store/stores';
 import { UserActions } from '../../store/user.store';
 import { firstLetterUpper } from '../../utils/formatString';
 import './style.scss'
-
-
+import { AccountsActions } from '../../store/accounts.store';
+import Loader from '../../components/Loader';
+import Account from '../../components/Account';
+import { IAccount } from '../../interfaces/Account.store.intf';
 
 const Profile: React.FunctionComponent = () => {
   const [editProfile, setEditProfile] = useState<boolean>(false)
   const [formInputFirstName, setFormInputFirstName] = useState<string>('') 
   const [formInputLastName, setFormInputLastName] = useState<string>('') 
 
+  const errorMessage = useSelector((state: State) => state.user.errorMessage )
   const user: IUserInfos = useSelector((state: State) => state.user.user)
   const token: string = useSelector((state: State) => state.user.token)
   const loading: boolean = useSelector((state: State) => state.user.loading)
+  const account = useSelector((state: State) => state.account)
+  const accounts = useSelector((state: State) => state.account.accounts)
+  const [componentMount, setComponentMount] = useState<boolean>(false)
 
+  // Load data Accounts
+  useEffect(() => {
+    if(accounts.length === 0) {
+      store.dispatch(AccountsActions.getAccountsUser(token))
+      .then(() => showAccounts())
+    } else {
+      showAccounts()
+    }
+  }, [token, accounts])
+
+  const showAccounts = () => {
+    const timer = setTimeout(() => {
+      setComponentMount(true)
+      clearTimeout(timer)
+    }, 300)   
+  }
+
+  // Handle Escape edit
+  const handleUserKeyPress = useCallback((evt: any) => {
+    if(evt.key === "Escape" && editProfile) {
+      setEditProfile(false)
+    }
+  }, [editProfile]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleUserKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleUserKeyPress);
+    };
+  }, [handleUserKeyPress]);
+
+  // Handle Button Edit
   const handleEditProfile = (e: MouseEvent) => {
     e.preventDefault()
     setEditProfile(!editProfile)
   }
 
+  // Handle Button Save Name
   const handleSaveProfile = (e: MouseEvent) => {
     e.preventDefault()
+    store.dispatch(UserActions.initErrorMessage({}))
     if(formInputFirstName !== '' && formInputLastName !== '') {
       store.dispatch(UserActions.updateUserInfos({
         firstName: firstLetterUpper(formInputFirstName),
         lastName: firstLetterUpper(formInputLastName),
         token
       }))
-      .then(() => {
+      .finally(() => {
         setEditProfile(false)
       })   
-    } else {
-      setEditProfile(false) 
+    }
+  }
+
+  // Handle Button Cancel
+  const handleCancelProfile = (e: MouseEvent) => {
+    e.preventDefault()
+    if(editProfile) {
+      setEditProfile(false)
+      store.dispatch(UserActions.initErrorMessage({}))
     }
   }
 
   return (
     <div className="container bg-dark profile">
+      { errorMessage ? (
+        <div className="badge-alert">
+          <FontAwesomeIcon icon={faCircleExclamation} />
+          <p>{ `${errorMessage}` } </p>
+        </div>
+      ) : null}
       {editProfile ? (
         <div className="profile__header">
           <h1>Welcome back</h1>
@@ -58,6 +113,7 @@ const Profile: React.FunctionComponent = () => {
             </div>
             <div className='profile__header__button'>
               <Button onClick={handleSaveProfile} isLoading={loading} label="Save Name"/>
+              <Button onClick={handleCancelProfile} style={ButtonStyle.CANCEL} label="Cancel"/>
             </div>  
           </form>
         </div>
@@ -70,36 +126,17 @@ const Profile: React.FunctionComponent = () => {
         </div>
       )}
       <h2 className="sr-only">Accounts</h2>
-      <section className="account">
-        <div className="account__content">
-          <h3 className="account__content__title">Argent Bank Checking (x8349)</h3>
-          <p className="account__content__amount">$2,082.79</p>
-          <p className="account__content__description">Available Balance</p>
-        </div>
-        <div className="account__cta">
-          <Button style={ButtonStyle.CTA} label="View transactions"/>
-        </div>
-      </section>
-      <section className="account">
-        <div className="account__content">
-          <h3 className="account__content__title">Argent Bank Checking (x8349)</h3>
-          <p className="account__content__amount">$2,082.79</p>
-          <p className="account__content__description">Available Balance</p>
-        </div>
-        <div className="account__cta">
-          <Button style={ButtonStyle.CTA} label="View transactions"/>
-        </div>
-      </section>
-      <section className="account">
-        <div className="account__content">
-          <h3 className="account__content__title">Argent Bank Checking (x8349)</h3>
-          <p className="account__content__amount">$2,082.79</p>
-          <p className="account__content__description">Available Balance</p>
-        </div>
-        <div className="account__cta">
-          <Button style={ButtonStyle.CTA} label="View transactions"/>
-        </div>
-      </section>
+      <div className={`${!componentMount ? 'reveal' : ''}`}>
+        {account.loading ? (
+          <Loader />
+        ) : (
+          <Fragment>
+            {accounts.map((item: IAccount, index: number) => (
+              <Account className={`reveal-${index + 1}`} key={`account-${item.id}`} account={item}/>
+            ))}
+          </Fragment>
+        )}
+      </div>
     </div>
   );
 }
