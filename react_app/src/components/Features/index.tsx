@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import './style.scss';
+import { useEffect, useState, FunctionComponent } from 'react'
+import './style.scss'
 
 import iconMoney from './../../assets/icon-money.png'
 import iconChat from './../../assets/icon-chat.png'
 import iconSecurity from './../../assets/icon-security.png'
 
-const Features: React.FunctionComponent = () => {
+const Features: FunctionComponent = () => {
   const [componentMount, setComponentMount] = useState<boolean>(false)
   
   useEffect(() => {
@@ -13,7 +13,7 @@ const Features: React.FunctionComponent = () => {
   }, [])
 
   return (
-    <section className={`features ${!componentMount ? 'reveal' : ''}`}>
+    <section data-testid="features" className={`features ${!componentMount ? 'reveal' : ''}`}>
       <h2 className="sr-only">Features</h2>
       <div className="features__item reveal-2">
         <img src={iconChat} alt="Chat Icon" className="features__item__icon" />

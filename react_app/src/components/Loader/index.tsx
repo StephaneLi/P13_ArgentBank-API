@@ -1,12 +1,13 @@
-import React from 'react';
-import './style.scss';
+import { FunctionComponent } from 'react'
 
-const Loader: React.FunctionComponent = () => {
+import './style.scss'
+
+const Loader: FunctionComponent = () => {
   return (
-    <div className="loading">
+    <div data-testid="loader" className="loading">
       <p>Loading</p>
     </div>
   );
 }
 
-export default Loader;
+export default Loader

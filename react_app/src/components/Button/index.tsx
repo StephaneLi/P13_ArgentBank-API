@@ -1,5 +1,5 @@
-import React, { useState, FunctionComponent, MouseEventHandler, useEffect } from 'react';
-import './style.scss';
+import { useState, FunctionComponent, MouseEventHandler, useEffect } from 'react'
+import './style.scss'
 
 export enum ButtonStyle {
   CTA,
@@ -33,7 +33,7 @@ const Button: FunctionComponent<ButtonProps> = ({label='label', onClick = null, 
   }
 
   return (
-    <button onClick={onClick!} className={`button ${ getStyleButtonClassName(style) } ${loading ? 'button--loading' : ''}`}>
+    <button data-testid="button" onClick={onClick!} className={`button ${ getStyleButtonClassName(style) } ${loading ? 'button--loading' : ''}`}>
       {label}
     </button>
   );

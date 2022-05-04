@@ -1,5 +1,6 @@
-import { FunctionComponent, useState, useEffect } from 'react';
-import './style.scss';
+import { FunctionComponent, useState, useEffect } from 'react'
+
+import './style.scss'
 
 const Hero: FunctionComponent = () => {
   const [componentMount, setComponentMount] = useState<boolean>(false)
@@ -9,7 +10,7 @@ const Hero: FunctionComponent = () => {
   }, [])
   
   return (
-    <div className={`hero ${!componentMount ? 'reveal' : ''}`}>
+  <div data-testid="hero" className={`hero ${!componentMount ? 'reveal' : ''}`}>
     <section className="hero__content reveal-1">
       <h2 className="sr-only">Promoted Content</h2>
       <p className="hero__content__subtitle">No fees.</p>
@@ -21,4 +22,4 @@ const Hero: FunctionComponent = () => {
   );
 }
 
-export default Hero;
+export default Hero

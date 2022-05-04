@@ -3,22 +3,22 @@ import Button, { ButtonStyle } from '../../components/Button'
 
 import '../../config/config.jest'
 
-describe('test component button differents styles', () => {
-  test('renders component simple', () => {
+describe('When call Component Button with differents styles', () => {
+  test('Should render Button component simple', () => {
     render(<Button />)
-    const Element = screen.getByText('label')
+    const Element = screen.getByTestId('button')
     expect(Element).toBeInTheDocument()
   });
   
-  test('renders component cta', () => {
+  test('Should render Button component cta', () => {
     render(<Button style={ButtonStyle.CTA} />)
-    const Element = screen.getByText('label')
+    const Element = screen.getByTestId('button')
     expect(Element).toBeInTheDocument()
   });
   
-  test('renders component cancel', () => {
+  test('Should render Button component cancel', () => {
     render(<Button style={ButtonStyle.CANCEL} />)
-    const Element = screen.getByText('label')
+    const Element = screen.getByTestId('button')
     expect(Element).toBeInTheDocument()
   });  
 })

@@ -3,8 +3,8 @@ import Loader from '../../components/Loader'
 
 import '../../config/config.jest'
 
-test('renders component simple', () => {
+test('Should render Loader component simple', () => {
   render(<Loader />)
-  const Element = screen.getByText('Loading')
+  const Element = screen.getByTestId('loader')
   expect(Element).toBeInTheDocument()
 });

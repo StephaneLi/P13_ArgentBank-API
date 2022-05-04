@@ -1,7 +1,7 @@
-import axios from "axios";
-import Config from "../config/config";
+import axios from "axios"
+import Config from "../config/config"
 import MockAccounts from '../__fixtures/accounts_data.mock.json'
-import { SigniInPayload, ApiResponseData, UpdateProfilePayload } from "../interfaces/Api.service.intf";
+import { SigniInPayload, ApiResponseData, UpdateProfilePayload } from "../interfaces/Api.service.intf"
 
 const postSignIn = async (request: SigniInPayload): Promise<ApiResponseData> => {
   return axios.post(`${Config.API_HOST_PATH}/user/login`, request)

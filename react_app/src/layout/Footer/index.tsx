@@ -1,12 +1,13 @@
-import React from 'react';
+import { FunctionComponent } from 'react'
+
 import './style.scss'
 
-const Footer: React.FunctionComponent = () => {
+const Footer: FunctionComponent = () => {
   return (
-    <footer className="footer">
+    <footer data-testid="footer" className="footer">
       <p className="footer__text">Copyright 2020 Argent Bank</p>
     </footer>
   );
 }
 
-export default Footer;
+export default Footer

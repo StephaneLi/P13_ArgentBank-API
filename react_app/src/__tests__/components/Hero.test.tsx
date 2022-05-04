@@ -3,8 +3,8 @@ import Hero from '../../components/Hero'
 
 import '../../config/config.jest'
 
-test('renders Hero component simple', () => {
+test('Should render Hero component simple', () => {
   render(<Hero />)
-  const Element = screen.getByText('Promoted Content')
+  const Element = screen.getByTestId('hero')
   expect(Element).toBeInTheDocument()
 });

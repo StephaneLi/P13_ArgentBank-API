@@ -1,8 +1,9 @@
-import { FunctionComponent } from 'react';
-import { IAccount } from '../../interfaces/Account.store.intf';
-import { numStr } from '../../utils/numberStr';
-import Button, { ButtonStyle } from '../Button';
-import './style.scss';
+import { FunctionComponent } from 'react'
+import { IAccount } from '../../interfaces/Account.store.intf'
+import { numStr } from '../../utils/numberStr'
+import Button, { ButtonStyle } from '../Button'
+
+import './style.scss'
 
 type AccountProps = {
   account : IAccount,
@@ -11,7 +12,7 @@ type AccountProps = {
 
 const Account: FunctionComponent<AccountProps> = ({account, className}) => {
   return (
-    <section className={`account ${className}`}>
+    <section data-testid="account" className={`account ${className}`}>
     <div className="account__content">
       <h3 className="account__content__title">Argent Banck {account?.name} ({account?.accountId})</h3>
       <p className="account__content__amount">${ numStr(account?.sold!, ',')}</p>
@@ -24,4 +25,4 @@ const Account: FunctionComponent<AccountProps> = ({account, className}) => {
   );
 }
 
-export default Account;
+export default Account
