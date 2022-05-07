@@ -1,0 +1,27 @@
+{
+  "status": 200,
+  "message": "request for get accounts success",
+  "body": [
+    {
+      "id": "1",
+      "accountId": "x8349",
+      "name": "Checking",
+      "sold": 2082.79,
+      "status": "Available Balance"
+    },
+    {
+      "id": "2",
+      "accountId": "x6712",
+      "name": "Savings",
+      "sold": 10928.42,
+      "status": "Available Balance"
+    },
+    {
+      "id": "3",
+      "accountId": "x8349",
+      "name": "Credit Card",
+      "sold": 184.30,
+      "status": "Available Balance"
+    }
+  ]
+}

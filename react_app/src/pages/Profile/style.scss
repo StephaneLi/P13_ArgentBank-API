@@ -25,14 +25,29 @@
         gap: 20px;
 
         .input-wrapper {
-          max-width: 150px;
+          max-width: 200px;
+          margin-bottom: 0;
         }
       }
     }
 
     &__button {
-      display: inline-block
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+
+      .button {
+        max-width: 150px;
+      }
     }
+  }
+
+  .badge-alert {
+    position: absolute;
+    top:20px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .account {

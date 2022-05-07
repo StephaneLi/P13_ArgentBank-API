@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { TokenPayload, UserPayload, UpdateProfilePayload } from '../interfaces/Api.service.intf'
 import { login, getUserInfos, updateUserInfos } from './user.actions'
-import { IErrorSigninMessages, IUserInitialState } from './../interfaces/User.store.intf'
+import { IErrorMessages, IUserState } from './../interfaces/User.store.intf'
 
-const ErrorSigninMessages: IErrorSigninMessages = {
-  ERR_BAD_REQUEST: "You don't have a user account",
+const ErrorSigninMessages: IErrorMessages = {
+  ERR_BAD_REQUEST: "You don't have a user account or you have bad password",
   ERR_NETWORK: "An error occurred on the server, please contact the administrator"
 }
 
-const userInitialState: IUserInitialState = {
+const userInitialState: IUserState = {
   token: undefined,
   isAuthenticated: false
 }
@@ -18,20 +18,20 @@ const userSlice:Slice = createSlice({
   name: 'user',
   initialState: userInitialState,
   reducers: {
-    logout: (state: IUserInitialState) => {
+    logout: (state: IUserState) => {
       state.user = {}
       state.isAuthenticated = false
       state.token = undefined
       state.loading = false      
       state.errorMessage = undefined      
     },
-    setToken: (state: IUserInitialState, action: PayloadAction<string>) => {
+    setToken: (state: IUserState, action: PayloadAction<string>) => {
       state.token = action.payload;
     },
-    deleteToken: (state: IUserInitialState) =>  {
+    deleteToken: (state: IUserState) =>  {
       state.token = undefined;
     },
-    initErrorMessage: (state: IUserInitialState) => {
+    initErrorMessage: (state: IUserState) => {
       state.errorMessage = undefined
     },
   },

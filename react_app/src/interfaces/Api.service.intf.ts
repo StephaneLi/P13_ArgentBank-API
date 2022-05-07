@@ -1,7 +1,7 @@
 export interface ApiResponseData {
   status?: number,
   message?: string,
-  body?: TokenPayload | UserPayload  
+  body?: TokenPayload | UserPayload | AccountPayload[]
 }
 
 export interface SigniInPayload {
@@ -18,6 +18,14 @@ export interface UpdateProfilePayload {
 export interface UserPayload {
   id: string
   email: string
+}
+
+export interface AccountPayload {  
+  id: string,
+  accountId: string,
+  name: string,
+  sold: number,
+  status: string 
 }
 
 export interface TokenPayload {

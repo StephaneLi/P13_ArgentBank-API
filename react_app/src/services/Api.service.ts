@@ -1,8 +1,10 @@
-import axios from "axios";
-import { SigniInPayload, ApiResponseData, UpdateProfilePayload } from "../interfaces/Api.service.intf";
+import axios from "axios"
+import Config from "../config/config"
+import MockAccounts from '../__fixtures/accounts_data.mock.json'
+import { SigniInPayload, ApiResponseData, UpdateProfilePayload } from "../interfaces/Api.service.intf"
 
 const postSignIn = async (request: SigniInPayload): Promise<ApiResponseData> => {
-  return axios.post(`${process.env.REACT_APP_API_HOST}/user/login`, request)
+  return axios.post(`${Config.API_HOST_PATH}/user/login`, request)
     .then(res => {   
       return res.data
     })
@@ -13,7 +15,7 @@ const postSignIn = async (request: SigniInPayload): Promise<ApiResponseData> => 
 
 const getUserInfos = async (token: string): Promise<ApiResponseData> => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-  return axios.post(`${process.env.REACT_APP_API_HOST}/user/profile`)
+  return axios.post(`${Config.API_HOST_PATH}/user/profile`)
   .then(res => {   
     return res.data
   })
@@ -24,7 +26,7 @@ const getUserInfos = async (token: string): Promise<ApiResponseData> => {
 
 const putUserInfos = async (request: UpdateProfilePayload): Promise<ApiResponseData> => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${request.token}`
-  return axios.put(`${process.env.REACT_APP_API_HOST}/user/profile`, request)
+  return axios.put(`${Config.API_HOST_PATH}/user/profile`, request)
   .then(res => {   
     return res.data
   })
@@ -33,10 +35,23 @@ const putUserInfos = async (request: UpdateProfilePayload): Promise<ApiResponseD
   })
 }
 
+/**
+ * TEMP: Mock API Request for display accounts
+ * @returns {ApiResponseData} Response
+ */
+const getAccountsUser = async (token: string): Promise<ApiResponseData> => {
+  // Mock Api Request Accounts
+  const data = MockAccounts as ApiResponseData
+  const delay = 2000
+
+  return new Promise(resolve => setTimeout(resolve, delay, data))
+}
+
 const Api = {
   postSignIn,
   getUserInfos,
-  putUserInfos
+  putUserInfos,
+  getAccountsUser
 };
 
 export default Api;

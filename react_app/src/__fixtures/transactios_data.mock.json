@@ -1,0 +1,66 @@
+{
+  "status": 200,
+  "message": "request for get transactions success",
+  "body": [
+    {
+      "id": "0001",
+      "createdAt": "2020-06-20",
+      "description": "Golden Sun Barkery",
+      "amount": 5,
+      "balance": 2082.79,
+      "transactionType": "Electronic",
+      "category": "Food",
+      "notes": ""
+    },
+    {
+      "id": "0002",
+      "createdAt": "2020-06-20",
+      "description": "Golden Sun Barkery",
+      "amount": 10,
+      "balance": 2087.79,
+      "transactionType": "Electronic",
+      "category": "Food",
+      "notes": ""
+    },
+    {
+      "id": "0003",
+      "createdAt": "2020-06-20",
+      "description": "Golden Sun Barkery",
+      "amount": 20,
+      "balance": 2097.79,
+      "transactionType": "Electronic",
+      "category": "Food",
+      "notes": ""
+    },
+    {
+      "id": "0004",
+      "createdAt": "2020-06-20",
+      "description": "Golden Sun Barkery",
+      "amount": 30,
+      "balance": 2117.79,
+      "transactionType": "Electronic",
+      "category": "Food",
+      "notes": ""
+    },
+    {
+      "id": "0005",
+      "createdAt": "2020-06-20",
+      "description": "Golden Sun Barkery",
+      "amount": 40,
+      "balance": 2147.79,
+      "transactionType": "Electronic",
+      "category": "Food",
+      "notes": ""
+    },
+    {
+      "id": "0006",
+      "createdAt": "2020-06-20",
+      "description": "Golden Sun Barkery",
+      "amount": 50,
+      "balance": 2187.79,
+      "transactionType": "Electronic",
+      "category": "Food",
+      "notes": ""
+    }
+  ]
+}

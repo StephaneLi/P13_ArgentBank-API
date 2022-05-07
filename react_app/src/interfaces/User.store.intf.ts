@@ -1,4 +1,4 @@
-export interface IErrorSigninMessages {
+export interface IErrorMessages {
   [key: string]: string | undefined
 }
 
@@ -11,7 +11,7 @@ export interface IUserInfos {
   id?: string
 }
 
-export interface IUserInitialState {
+export interface IUserState {
   user?: IUserInfos,
   isAuthenticated: boolean,
   token?: string,
