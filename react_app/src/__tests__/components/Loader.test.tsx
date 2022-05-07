@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '../../utils/testRedux'
 import Loader from '../../components/Loader'
 
 import '../../config/config.jest'

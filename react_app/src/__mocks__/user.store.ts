@@ -1,7 +1,6 @@
-/* eslint-disable import/no-anonymous-default-export */
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const userSlice = createSlice({
+export const mockUserSlice = createSlice({
   name:'user',
   initialState: {
     user: {
@@ -27,22 +26,13 @@ const userSlice = createSlice({
   }
 })
 
-const mockStore = configureStore({
-  reducer: {
-    user: userSlice.reducer
-  }
-})
+const { login, logout } = mockUserSlice.actions
 
-const { login, logout } = userSlice.actions
-
-export type AppDispatch = typeof mockStore.dispatch
+export default mockUserSlice.reducer
 
 export const mockUserActions = {
   login,
   logout
 }
 
-export default {
-  store: () => mockStore,
-  actions: mockUserActions
-}
+

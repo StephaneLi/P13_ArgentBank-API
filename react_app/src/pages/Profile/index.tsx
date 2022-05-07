@@ -90,7 +90,7 @@ const Profile: React.FunctionComponent = () => {
   }
 
   return (
-    <div className="container bg-dark profile">
+    <div data-testid="profile" className="container bg-dark profile">
       { errorMessage ? (
         <div className="badge-alert">
           <FontAwesomeIcon icon={faCircleExclamation} />
@@ -98,7 +98,7 @@ const Profile: React.FunctionComponent = () => {
         </div>
       ) : null}
       {editProfile ? (
-        <div className="profile__header">
+        <div data-testid="form-edit-name" className="profile__header">
           <h1>Welcome back</h1>
           <form className="profile__header__edit">
             <div className="profile__header__edit__wrapper">
@@ -119,14 +119,14 @@ const Profile: React.FunctionComponent = () => {
         </div>
       ) : (
         <div className="profile__header">
-          <h1>Welcome back <br />{ user?.firstName } { user?.lastName }!</h1>
+          <h1 data-testid="username">Welcome back <br />{ user?.firstName } { user?.lastName }!</h1>
           <div className='profile__header__button'>
             <Button onClick={handleEditProfile} label="Edit Name"/>
           </div>        
         </div>
       )}
       <h2 className="sr-only">Accounts</h2>
-      <div className={`${!componentMount ? 'reveal' : ''}`}>
+      <div data-testid="accounts" className={`${!componentMount ? 'reveal' : ''}`}>
         {account.loading ? (
           <Loader />
         ) : (

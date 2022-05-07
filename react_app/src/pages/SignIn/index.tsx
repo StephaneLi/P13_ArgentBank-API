@@ -63,7 +63,7 @@ const SignIn: React.FunctionComponent = () => {
   )
   
   return (
-    <div className={`container bg-dark signin ${!componentMount ? 'reveal' : ''}`}>
+    <div data-testid="signin" className={`container bg-dark signin ${!componentMount ? 'reveal' : ''}`}>
       <section className="signin__content reveal-4">
         <div className={`badge-alert ${errorMessage ? 'badge-alert--show' : ''}`}>
         {errorMessage ? ( 

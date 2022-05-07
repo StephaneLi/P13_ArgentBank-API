@@ -33,7 +33,7 @@ const Button: FunctionComponent<ButtonProps> = ({label='label', onClick = null, 
   }
 
   return (
-    <button data-testid="button" onClick={onClick!} className={`button ${ getStyleButtonClassName(style) } ${loading ? 'button--loading' : ''}`}>
+    <button data-testid={label} onClick={onClick!} className={`button ${ getStyleButtonClassName(style) } ${loading ? 'button--loading' : ''}`}>
       {label}
     </button>
   );

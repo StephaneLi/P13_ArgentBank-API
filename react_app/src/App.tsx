@@ -24,7 +24,7 @@ const App: React.FunctionComponent = () => {
   const [displayLoader, setDisplayLoader] = useState<boolean>(false)
 
   // Check token localStorage
-  useEffect(() => {     
+  useEffect(() => {
     if(localStorage.getItem('token')) {
       const dataToken = JSON.parse(localStorage.getItem('token')!)
       // Check exiration validity

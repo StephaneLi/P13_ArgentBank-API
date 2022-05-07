@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '../../utils/testRedux'
 import Account from '../../components/Account'
 import MockAccountData from '../../__fixtures/accounts_data.mock.json'
 import { IAccount } from '../../interfaces/Account.store.intf'

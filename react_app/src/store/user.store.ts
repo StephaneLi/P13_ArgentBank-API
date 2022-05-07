@@ -4,7 +4,7 @@ import { login, getUserInfos, updateUserInfos } from './user.actions'
 import { IErrorMessages, IUserState } from './../interfaces/User.store.intf'
 
 const ErrorSigninMessages: IErrorMessages = {
-  ERR_BAD_REQUEST: "You don't have a user account",
+  ERR_BAD_REQUEST: "You don't have a user account or you have bad password",
   ERR_NETWORK: "An error occurred on the server, please contact the administrator"
 }
 
