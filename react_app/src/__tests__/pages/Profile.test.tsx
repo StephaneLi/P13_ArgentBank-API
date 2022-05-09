@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent, waitFor } from '../../utils/testRedux'
+import { render, screen, fireEvent } from '../../utils/testRedux'
 import Profile from '../../pages/Profile'
 
 import '../../config/config.jest'

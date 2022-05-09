@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "message": "User successfully logged in",
+  "body": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmE1NDBhNjE3YTZkMGQ3ODExZTdjYiIsImlhdCI6MTY1MjA3Mzg4NywiZXhwIjoxNjUyMTYwMjg3fQ.u3EB1ox7p-35Q-Txwc9V4AILpv4gRqcQ92gqThmH9iA"
+  }
+}
