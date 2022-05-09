@@ -8,9 +8,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 The project concerns a new start-up bank, Argent Bank, which is trying to break into the sector and which needs help to set up its application
 
 ## Deliverables
-[DEMO WITH MOCK API](https://oc.sli-3d.fr/P13_ArgentBank/) [Warning!! the data is not persistent because the API is not deployed]
-[SWAGGER API](https://github.com/StephaneLi/StephaneLieumont_13_28042022/blob/master/docs/swagger-transaction.yml)  
-[REACT APP](https://github.com/StephaneLi/StephaneLieumont_13_28042022/tree/master/react_app)  
+[DEMO WITH MOCK API](https://oc.sli-3d.fr/P13_ArgentBank/) [Warning!! the data is not persistent because the API is not deployed]  
+[SWAGGER API](https://github.com/StephaneLi/StephaneLieumont_13_28042022/blob/master/docs/swagger-transaction.yml)   
+[REACT APP](https://github.com/StephaneLi/StephaneLieumont_13_28042022/tree/master/react_app)   
 
 ## Argent Bank FULL STACK
 The compose docker file allows you to create a stack with the API and the frontend. The `.env.sample` file should be used as a basis for adding environment variables to an `.env` file at the root of the project.
