@@ -17,6 +17,15 @@ The compose docker file allows you to create a stack with the API and the fronte
 
 ## Argent Bank FRONT  
 
+#### ENVIRONMENT
+
+The `.env.sample` file should be used as a basis for adding environment variables to an `.env` file at the root of the project.  
+
+| VARIABLE | REQUIRED | DEFAULT | DESCRIPTION 
+|:-------:|:------:|:----:|:---
+| REACT_APP_API_HOST | YES | `http://localhost:3000/` | example : 'http://localhost:3001/api/v1'
+| REACT_APP_DEPLOY_MOCK | NO | `false` | usefull for demo example without api deployement
+
 #### Available Scripts  
 ##### `npm start`
 In the project directory, you can run:
