@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 The project concerns a new start-up bank, Argent Bank, which is trying to break into the sector and which needs help to set up its application
 
 ## Deliverables
-[DEMO WITH MOCK API](https://oc.sli-3d.fr/P13_ArgentBank/)  
+[DEMO WITH MOCK API](https://oc.sli-3d.fr/P13_ArgentBank/) [Warning!! the data is not persistent because the API is not deployed]
 [SWAGGER API](https://github.com/StephaneLi/StephaneLieumont_13_28042022/blob/master/docs/swagger-transaction.yml)  
 [REACT APP](https://github.com/StephaneLi/StephaneLieumont_13_28042022/tree/master/react_app)  
 

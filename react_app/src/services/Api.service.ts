@@ -1,10 +1,12 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import Config from "../config/config"
 
 import MockAccounts from '../__fixtures/accounts_data.mock.json'
 import MockProfile from '../__fixtures/profile_data.mock.json' // Only use for static build deployment without API
+import MockProfile2 from '../__fixtures/profile_data.mock2.json' // Only use for static build deployment without API
 import MockSignin from '../__fixtures/signin_data.mock.json' // Only use for static build deployment without API
 import MockUpdateProfile from '../__fixtures/profile_update_data.mock.json' // Only use for static build deployment without API
+import MockUsers from '../__fixtures/users_data.mock.json' // Only use for static build deployment without API
 
 import { SigniInPayload, ApiResponseData, UpdateProfilePayload } from "../interfaces/Api.service.intf"
 
@@ -57,21 +59,43 @@ const getAccountsUserMock = async (token: string): Promise<ApiResponseData> => {
  * @returns {ApiResponseData} Response
  */
 const postSignInMock = async (request: SigniInPayload): Promise<ApiResponseData> => {
-  // Mock Api Request Accounts
-  const data = MockSignin as ApiResponseData
+  let valid = false;
+  let data: any = MockSignin
+  const error = new AxiosError()
+  error.code = "ERR_BAD_REQUEST"  
+
+  MockUsers.forEach((user) => {
+    if(user.email === request.email && user.password === request.password) {
+      user.email === 'tony@stark.com' ? data.body.token = '1234' : data.body.token = '5678'
+      valid = true
+      return
+    }
+  })
+
+  // Mock Api Request  
   const delay = 1000
   console.info('requests "get:/signin" are simulated because the API is not deployed')
 
-  return new Promise(resolve => setTimeout(resolve, delay, data))
-};
+  if(!valid) {    
+    
+    return new Promise(rejected => setTimeout(rejected, delay, data))
+      .then(() => {
+        throw error
+      })
+  } else {
+    return new Promise(resolve => setTimeout(resolve, delay, data))
+  }  
+}
 
 /**
  * STATIC BUILD: Mock API Request for get user infos static deployment
  * @returns {ApiResponseData} Response
  */
 const getUserInfosMock = async (token: string): Promise<ApiResponseData> => {
-  // Mock Api Request Accounts
-  const data = MockProfile as ApiResponseData
+  // Mock Api Request
+  let data: ApiResponseData
+  token === '1234' ? data = MockProfile : data = MockProfile2
+
   const delay = 1000
   console.info('requests "get:/user" are simulated because the API is not deployed')
 
@@ -83,8 +107,9 @@ const getUserInfosMock = async (token: string): Promise<ApiResponseData> => {
  * @returns {ApiResponseData} Response
  */
 const putUserInfosMock = async (request: UpdateProfilePayload): Promise<ApiResponseData> => {
-  // Mock Api Request Accounts
-  const data = MockUpdateProfile as ApiResponseData
+  // Mock Api Request
+  let data: ApiResponseData = MockUpdateProfile
+  data.body = request
   const delay = 1000
   console.info('requests "put:/user" are simulated because the API is not deployed')
 
