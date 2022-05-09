@@ -44,7 +44,7 @@
 
     &--loading {
       color: transparent;
-      background-color: derken($primary-light, 50%);
+      background-color: darken($primary-light, 50%);
 
       &::before {
         display:none;
