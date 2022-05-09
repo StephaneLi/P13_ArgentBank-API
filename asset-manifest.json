@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/StephaneLieumont_13_28042022/static/css/main.c04856a6.css",
-    "main.js": "/StephaneLieumont_13_28042022/static/js/main.79e9486b.js",
+    "main.js": "/StephaneLieumont_13_28042022/static/js/main.cc874af8.js",
     "static/js/787.b97ecb45.chunk.js": "/StephaneLieumont_13_28042022/static/js/787.b97ecb45.chunk.js",
     "static/media/bank-tree.jpeg": "/StephaneLieumont_13_28042022/static/media/bank-tree.4d59987c7c62b024b014.jpeg",
     "static/media/icon-security.png": "/StephaneLieumont_13_28042022/static/media/icon-security.1c819fa1007a5c53e6a9.png",
@@ -11,11 +11,11 @@
     "static/media/error.png": "/StephaneLieumont_13_28042022/static/media/error.04bfc33311647aa4262b.png",
     "index.html": "/StephaneLieumont_13_28042022/index.html",
     "main.c04856a6.css.map": "/StephaneLieumont_13_28042022/static/css/main.c04856a6.css.map",
-    "main.79e9486b.js.map": "/StephaneLieumont_13_28042022/static/js/main.79e9486b.js.map",
+    "main.cc874af8.js.map": "/StephaneLieumont_13_28042022/static/js/main.cc874af8.js.map",
     "787.b97ecb45.chunk.js.map": "/StephaneLieumont_13_28042022/static/js/787.b97ecb45.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c04856a6.css",
-    "static/js/main.79e9486b.js"
+    "static/js/main.cc874af8.js"
   ]
 }
