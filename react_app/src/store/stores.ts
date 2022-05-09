@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore  } from "@reduxjs/toolkit";
 import userSlice from "./user.store";
 import accountSlice from "./accounts.store";
 import { useDispatch } from "react-redux";
