@@ -12,3 +12,14 @@ services:
     - NODE_ENV=${NODE_ENV}
     - PORT=${API_PORT}
     - DATABASE_URL=${DATABASE_URL}
+
+  argentbanck-front:
+    container_name: ${CONTAINER_FRONT_NAME}
+    image: ${IMAGE_FRONT_NAME}
+    expose:
+    - 80
+    ports:
+    - ${FRONT_PORT}:80
+    environment:
+    - REACT_APP_API_HOST=${API_HOST}
+    - REACT_APP_DEPLOY_MOCK=false
